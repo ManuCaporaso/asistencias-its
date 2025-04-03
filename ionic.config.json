@@ -1,0 +1,7 @@
+{
+  "name": "its-asistencia",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
