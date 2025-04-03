@@ -38,9 +38,9 @@ interface Subject {
 })
 export class HomePage {
   subjects: Subject[] = [
-    { id: 1, name: 'Matemáticas', course: 'A', year: '2023' },
-    { id: 2, name: 'Literatura', course: 'B', year: '2023' },
-    { id: 3, name: 'Física', course: 'C', year: '2023' },
+    { id: 1, name: 'Desarrollo Mobile', course: 'A', year: '2025' },
+    { id: 2, name: 'Desarrolo Web', course: 'B', year: '2025' },
+    { id: 3, name: 'Gestion de Proyectos', course: 'C', year: '2025' },
   ];
 
   constructor(private router: Router) {}

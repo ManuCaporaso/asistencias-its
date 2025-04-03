@@ -79,9 +79,9 @@ export class AttendancePage implements OnInit {
     const subjectId = this.route.snapshot.paramMap.get('id');
     this.currentSubject = {
       id: subjectId,
-      name: 'Matemáticas', // Esto debería venir de tu servicio/API
+      name: 'Desarrollo Mobile', // Esto debería venir de tu servicio/API
       course: 'A',         // Esto debería venir de tu servicio/API
-      year: '2023'         // Esto debería venir de tu servicio/API
+      year: '2025'         // Esto debería venir de tu servicio/API
     };
   }
 

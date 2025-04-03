@@ -33,8 +33,8 @@ import {
   ]
 })
 export class LoginPage {
-  email: string = '';
-  password: string = '';
+  email: string = 'admin@admin.com';
+  password: string = 'admin';
 
   constructor(
     private router: Router,
