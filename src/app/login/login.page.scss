@@ -1,0 +1,91 @@
+/* Estilo para el header */
+ion-header {
+    ion-toolbar {
+      --background: #2c3e50; /* Azul oscuro */
+      --color: white; /* Texto blanco */
+      
+      ion-title {
+        font-size: 1.2rem;
+        font-weight: 500;
+        text-align: center;
+      }
+    }
+  }
+  
+  /* Estilo para el contenido */
+  ion-content {
+    --background: #f5f7fa; /* Fondo gris claro */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 56px); /* Ajuste para el header */
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #2c3e50; /* Azul oscuro */
+    margin-bottom: 16px;
+  }
+  
+  /* Estilo para el formulario */
+  form {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo para los items del formulario */
+  ion-item {
+    --border-radius: 8px;
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    margin-bottom: 20px;
+    --background: #f8f9fa;
+    --border-color: #e0e0e0;
+    
+    ion-label {
+      color: #7f8c8d;
+      font-weight: 500;
+    }
+    
+    ion-input {
+      --padding-start: 8px;
+      color: #2c3e50;
+    }
+  }
+  
+  /* Estilo para el botón de login */
+  ion-button {
+    --background: #3498db; /* Azul brillante */
+    --background-activated: #2980b9; /* Azul más oscuro al presionar */
+    --background-hover: #2980b9;
+    --color: white;
+    --border-radius: 8px;
+    height: 48px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+    
+    &[disabled] {
+      --background: #bdc3c7; /* Gris cuando está deshabilitado */
+      opacity: 0.8;
+    }
+  }
+  
+  /* Estilos para el estado de enfoque (focus) */
+  ion-item.item-has-focus {
+    --border-color: #3498db;
+    
+    ion-label {
+      color: #3498db !important;
+    }
+  }
+  
+  /* Efecto de transición suave */
+  ion-item, ion-button {
+    transition: all 0.3s ease;
+  }

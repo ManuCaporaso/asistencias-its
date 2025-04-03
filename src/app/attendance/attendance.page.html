@@ -20,8 +20,13 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let student of students">
+      <ion-avatar slot="start">
+        <img [src]="student.avatar || 'assets/images/default-avatar.png'" 
+            alt="Avatar de {{student.firstName}}">
+      </ion-avatar>
       <ion-label>
-        <h2>{{ student.name }}</h2>
+        <h2>{{ student.firstName }}</h2>
+        <h2>{{ student.lastName }}</h2>
         <p>{{ student.id }}</p>
       </ion-label>
       <ion-toggle [(ngModel)]="student.present" slot="end"></ion-toggle>

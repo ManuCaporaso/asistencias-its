@@ -14,15 +14,18 @@ import {
   IonToggle,
   IonButtons,
   IonButton,
-  IonIcon
+  IonIcon,
+  IonAvatar
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { save, arrowBack } from 'ionicons/icons';
 
 interface Student {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   present: boolean;
+  avatar: string;
 }
 
 interface Subject {
@@ -50,7 +53,8 @@ interface Subject {
     IonToggle,
     IonButtons,
     IonButton,
-    IonIcon
+    IonIcon,
+    IonAvatar
   ]
 })
 export class AttendancePage implements OnInit {
@@ -62,9 +66,27 @@ export class AttendancePage implements OnInit {
   };
   currentDate: Date = new Date();
   students: Student[] = [
-    { id: '001', name: 'Juan Pérez', present: true },
-    { id: '002', name: 'María Gómez', present: true },
-    { id: '003', name: 'Carlos López', present: false },
+    { 
+      id: '001', 
+      firstName: 'Leonel', 
+      lastName: 'Messi',
+      present: false,
+      avatar: '../../assets/images/avatares/avatar1.PNG' 
+    },
+    { 
+      id: '002', 
+      firstName: 'Rodrigo',
+      lastName: 'De Paul', 
+      present: false,
+      avatar: '../../assets/images/avatares/avatar2.PNG' 
+    },
+    { 
+      id: '003', 
+      firstName: 'Emiliano', 
+      lastName: 'Martinez',
+      present: false,
+      avatar: '../../assets/images/avatares/avatar3.PNG' 
+    },
   ];
 
   constructor(
