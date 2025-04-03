@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Asistencia - {{ currentSubject?.name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="saveAttendance()">
+        <ion-icon slot="icon-only" name="save"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-title>{{ currentDate | date:'fullDate' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let student of students">
+      <ion-label>
+        <h2>{{ student.name }}</h2>
+        <p>{{ student.id }}</p>
+      </ion-label>
+      <ion-toggle [(ngModel)]="student.present" slot="end"></ion-toggle>
+    </ion-item>
+  </ion-list>
+</ion-content>
