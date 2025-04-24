@@ -14,7 +14,7 @@ ion-header {
   
   /* Estilo para el contenido */
   ion-content {
-    --background: #f5f7fa; /* Fondo gris claro */
+    --background: #ffffff; /* Fondo gris claro */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,7 +23,7 @@ ion-header {
 
   h2 {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: #2c3e50; /* Azul oscuro */
     margin-bottom: 16px;
   }
@@ -89,3 +89,17 @@ ion-header {
   ion-item, ion-button {
     transition: all 0.3s ease;
   }
+
+  /* Estilos para el contenedor del logo */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 3rem 0;
+  
+  .logo {
+    width: 250px; /* Ajusta según necesites */
+    height: auto;
+    border-radius: 8px; /* Opcional para bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  }
+}

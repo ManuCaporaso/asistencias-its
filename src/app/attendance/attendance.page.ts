@@ -4,36 +4,14 @@ import { AlertController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { 
-  IonHeader, 
-  IonToolbar, 
-  IonTitle, 
-  IonContent, 
-  IonList, 
-  IonItem, 
-  IonLabel, 
-  IonToggle,
-  IonButtons,
-  IonButton,
-  IonIcon,
-  IonAvatar
+  IonHeader, IonToolbar, IonTitle, IonContent, IonList, 
+  IonItem, IonLabel, IonToggle, IonButtons, IonButton, 
+  IonIcon, IonAvatar, IonSpinner,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { save, arrowBack } from 'ionicons/icons';
-
-interface Student {
-  id: string;
-  firstName: string;
-  lastName: string;
-  present: boolean;
-  avatar: string;
-}
-
-interface Subject {
-  id: string | null;
-  name: string;
-  course: string;
-  year: string;
-}
+import { Subject } from '../models/subject.model';
+import { SubjectService } from '../services/subject.services';
 
 @Component({
   selector: 'app-attendance',
@@ -43,78 +21,62 @@ interface Subject {
   imports: [
     CommonModule,
     FormsModule,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
-    IonList,
-    IonItem,
-    IonLabel,
-    IonToggle,
-    IonButtons,
-    IonButton,
-    IonIcon,
-    IonAvatar
+    IonHeader, IonToolbar, IonTitle, IonContent, IonList,
+    IonItem, IonLabel, IonToggle, IonButtons, IonButton,
+    IonIcon, IonAvatar, IonSpinner
   ]
 })
 export class AttendancePage implements OnInit {
-  currentSubject: Subject = {
-    id: null,
-    name: '',
-    course: '',
-    year: ''
-  };
+  currentSubject: Subject | null = null;
   currentDate: Date = new Date();
-  students: Student[] = [
-    { 
-      id: '001', 
-      firstName: 'Leonel', 
-      lastName: 'Messi',
-      present: false,
-      avatar: '../../assets/images/avatares/avatar1.PNG' 
-    },
-    { 
-      id: '002', 
-      firstName: 'Rodrigo',
-      lastName: 'De Paul', 
-      present: false,
-      avatar: '../../assets/images/avatares/avatar2.PNG' 
-    },
-    { 
-      id: '003', 
-      firstName: 'Emiliano', 
-      lastName: 'Martinez',
-      present: false,
-      avatar: '../../assets/images/avatares/avatar3.PNG' 
-    },
-  ];
 
   constructor(
     private route: ActivatedRoute,
     private alertController: AlertController,
-    private router: Router
+    private router: Router,
+    private subjectService: SubjectService
   ) {
     addIcons({ save, arrowBack });
   }
 
   ngOnInit() {
     const subjectId = this.route.snapshot.paramMap.get('id');
-    this.currentSubject = {
-      id: subjectId,
-      name: 'Desarrollo Mobile', // Esto debería venir de tu servicio/API
-      course: 'A',         // Esto debería venir de tu servicio/API
-      year: '2025'         // Esto debería venir de tu servicio/API
-    };
+    if (subjectId) {
+      const subject = this.subjectService.getSubjectById(subjectId);
+      if (subject) {
+        this.currentSubject = subject;
+      } else {
+        this.showErrorAlert();
+      }
+    }
+  }
+
+  private async showErrorAlert() {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'Materia no encontrada',
+      buttons: [{
+        text: 'OK',
+        handler: () => this.router.navigate(['/home'])
+      }]
+    });
+    await alert.present();
   }
 
   async saveAttendance() {
+    if (!this.currentSubject) return;
+    
     const alert = await this.alertController.create({
       header: 'Asistencia guardada',
-      message: 'La asistencia ha sido registrada correctamente',
+      message: `La asistencia de ${this.currentSubject.name} ha sido registrada`,
       buttons: ['OK']
     });
     await alert.present();
-    console.log('Asistencia:', this.students);
+    
+    console.log('Asistencia guardada:', {
+      subject: this.currentSubject.name,
+      students: this.currentSubject.students
+    });
   }
 
   goBack() {

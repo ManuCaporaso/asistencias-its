@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Asistencias ITS</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -10,6 +15,9 @@
       <ion-label>
         <h2>{{ subject.name }}</h2>
         <p>{{ subject.course }} - {{ subject.year }}</p>
+        <p *ngIf="subject.students.length > 0">
+          Alumnos: {{ subject.students.length }}
+        </p>
       </ion-label>
       <ion-badge slot="end" color="primary">Tomar asistencia</ion-badge>
     </ion-item>

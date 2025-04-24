@@ -63,3 +63,17 @@ ion-header {
     --color: white;
     border-radius: 20px;
   }
+
+  /* Estilo para el botón de logout */
+ion-button {
+  --color: white; /* Color del icono */
+  
+  ion-icon {
+    font-size: 1.4rem;
+  }
+}
+
+/* Opcional: efecto al presionar */
+ion-button:active {
+  opacity: 0.7;
+}

@@ -5,9 +5,11 @@
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Asistencia - {{ currentSubject?.name }}</ion-title>
+    <ion-title *ngIf="currentSubject">
+      Asistencia - {{ currentSubject.name }}
+    </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="saveAttendance()">
+      <ion-button (click)="saveAttendance()" [disabled]="!currentSubject">
         <ion-icon slot="icon-only" name="save"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -18,18 +20,25 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let student of students">
+  <ion-list *ngIf="currentSubject; else loading">
+    <ion-item *ngFor="let student of currentSubject.students">
       <ion-avatar slot="start">
-        <img [src]="student.avatar || 'assets/images/default-avatar.png'" 
-            alt="Avatar de {{student.firstName}}">
+        <img [src]="student.avatar" 
+             [alt]="'Avatar de ' + student.firstName"
+             (error)="student.avatar = 'assets/images/default-avatar.png'">
       </ion-avatar>
       <ion-label>
-        <h2>{{ student.firstName }}</h2>
-        <h2>{{ student.lastName }}</h2>
+        <h2>{{ student.firstName }} {{ student.lastName }}</h2>
         <p>{{ student.id }}</p>
       </ion-label>
       <ion-toggle [(ngModel)]="student.present" slot="end"></ion-toggle>
     </ion-item>
   </ion-list>
+
+  <ng-template #loading>
+    <div class="loading-message">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando materia...</p>
+    </div>
+  </ng-template>
 </ion-content>
